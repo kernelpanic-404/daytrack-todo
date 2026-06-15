@@ -34,49 +34,30 @@ function renderAll() {
 
 // --- Funções de Renderização Dinâmica ---
 
-// 1. Card de Tarefas Pendentes
+// 1. Card de Tarefas Pendentes (Sem botão de deletar)
 function renderPendingActive() {
     todoList.innerHTML = '';
     pendingTasks.forEach((task, index) => {
-        // Criamos o elemento base (passando false pois NÃO está concluída)
         const li = createBaseTaskElement(task, false);
-
-        // Criamos o container de ações (apenas Deletar nas pendentes)
-        const actionsDiv = document.createElement('div');
-        actionsDiv.className = 'task-actions';
-
-        const deleteBtn = document.createElement('button');
-        deleteBtn.className = 'btn-delete';
-        deleteBtn.textContent = 'Deletar';
-
-        actionsDiv.appendChild(deleteBtn);
-        li.appendChild(actionsDiv);
         todoList.appendChild(li);
 
-        // EVENTO 1: Clicar no checkbox move AUTOMATICAMENTE para Concluídas
-        const checkbox = li.querySelector('input[type="checkbox"]');
-        checkbox.addEventListener('change', () => {
+        // Permite clicar em todo o bloco (texto ou checkbox) para concluir automaticamente
+        const contentDiv = li.querySelector('.todo-content');
+        contentDiv.addEventListener('click', () => {
             moveToCompleted(index);
-        });
-
-        // EVENTO 2: Clicar em deletar move para Excluídas
-        deleteBtn.addEventListener('click', () => {
-            moveToDeleted(index, 'pending');
         });
     });
 }
 
-// 2. Card de Tarefas Concluídas
+// 2. Card de Tarefas Concluídas (Com Reload e Deletar)
 function renderCompletedActive() {
     completedList.innerHTML = '';
     completedTasks.forEach((task, index) => {
-        // Criamos o elemento base (passando true pois ESTÁ concluída)
         const li = createBaseTaskElement(task, true);
 
         const actionsDiv = document.createElement('div');
         actionsDiv.className = 'task-actions';
 
-        // Botão de Reload (Resgatar)
         const reloadBtn = document.createElement('button');
         reloadBtn.className = 'btn-reload';
         reloadBtn.textContent = '🔄';
@@ -90,39 +71,37 @@ function renderCompletedActive() {
         li.appendChild(actionsDiv);
         completedList.appendChild(li);
 
-        // EVENTO 1: Desmarcar o checkbox joga de volta para Pendentes
-        const checkbox = li.querySelector('input[type="checkbox"]');
-        checkbox.addEventListener('change', () => {
+        // Clicar no texto ou checkbox também aciona o reload de volta para pendentes
+        const contentDiv = li.querySelector('.todo-content');
+        contentDiv.addEventListener('click', () => {
             returnToPending(index, 'completed');
         });
 
-        // EVENTO 2: Botão Reload joga de volta para Pendentes
-        reloadBtn.addEventListener('click', () => {
+        reloadBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Evita clique duplo com o container
             returnToPending(index, 'completed');
         });
 
-        // EVENTO 3: Botão Deletar envia para o card de Excluídas
-        deleteBtn.addEventListener('click', () => {
+        deleteBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
             moveToDeleted(index, 'completed');
         });
     });
 }
 
-// 3. Card de Tarefas Excluídas
+// 3. Card de Tarefas Excluídas (Com Reload e Deletar Definitivo)
 function renderDeletedActive() {
     deletedList.innerHTML = '';
     deletedTasks.forEach((task, index) => {
-        // Forçamos true para renderizar riscado no histórico
         const li = createBaseTaskElement(task, true);
 
-        // Remove o checkbox do card de excluídos (não faz sentido marcar/desmarcar lá)
+        // Remove o checkbox visual para o histórico de excluídas
         const checkbox = li.querySelector('input[type="checkbox"]');
         if (checkbox) checkbox.remove();
 
         const actionsDiv = document.createElement('div');
         actionsDiv.className = 'task-actions';
 
-        // Botão de Reload (Resgatar das excluídas)
         const reloadBtn = document.createElement('button');
         reloadBtn.className = 'btn-reload';
         reloadBtn.textContent = '🔄';
@@ -136,12 +115,11 @@ function renderDeletedActive() {
         li.appendChild(actionsDiv);
         deletedList.appendChild(li);
 
-        // EVENTO 1: Botão Reload resgata a tarefa excluída de volta para Pendentes
+        // Eventos dos botões das excluídas
         reloadBtn.addEventListener('click', () => {
             returnToPending(index, 'deleted');
         });
 
-        // EVENTO 2: Deleta para sempre do sistema
         finalDeleteBtn.addEventListener('click', () => {
             deletePermanently(index);
         });
@@ -159,6 +137,8 @@ function createBaseTaskElement(task, isFinished) {
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.checked = isFinished;
+    // Desabilita o clique nativo isolado do checkbox para deixar o container gerenciar o clique
+    checkbox.style.pointerEvents = 'none'; 
 
     const detailsDiv = document.createElement('div');
     detailsDiv.className = 'task-details';
@@ -207,7 +187,7 @@ function addTask(text) {
 function moveToCompleted(index) {
     const now = new Date();
     const [task] = pendingTasks.splice(index, 1);
-    task.dateString = now.toLocaleString('pt-BR'); // Adiciona data de conclusão
+    task.dateString = now.toLocaleString('pt-BR');
     completedTasks.push(task);
     renderAll();
 }
@@ -219,25 +199,16 @@ function returnToPending(index, origin) {
     } else if (origin === 'deleted') {
         [task] = deletedTasks.splice(index, 1);
     }
-    task.dateString = null; // Remove a data de conclusão ao voltar para pendente
+    task.dateString = null; // Zera o carimbo de conclusão ao retornar a pendente
     pendingTasks.push(task);
     renderAll();
 }
 
 function moveToDeleted(index, origin) {
     let task;
-    if (origin === 'pending') {
-        [task] = pendingTasks.splice(index, 1);
-    } else if (origin === 'completed') {
+    if (origin === 'completed') {
         [task] = completedTasks.splice(index, 1);
     }
-    
-    // Se foi deletada direto de pendentes, carimbamos o horário atual como finalizador
-    if (!task.dateString) {
-        const now = new Date();
-        task.dateString = now.toLocaleString('pt-BR');
-    }
-    
     deletedTasks.push(task);
     renderAll();
 }
