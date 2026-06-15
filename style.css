@@ -9,7 +9,6 @@ body {
     margin: 0;
 }
 
-/* Estilo do Título Principal */
 .main-title {
     color: #333;
     font-size: 24px;
@@ -67,7 +66,7 @@ h3 {
     background-color: #004d00;
 }
 
-/* Lista de Tarefas Comuns */
+/* Listas de Tarefas */
 .todo-list {
     list-style: none;
     padding: 0;
@@ -94,7 +93,6 @@ h3 {
     flex: 1;
 }
 
-/* Bloco interno para empilhar texto e data de criação */
 .task-details {
     display: flex;
     flex-direction: column;
@@ -105,21 +103,26 @@ h3 {
     color: #333;
 }
 
-/* Data de criação (Card de Pendentes) */
 .task-meta {
     font-size: 11px;
     color: #999;
     margin-top: 2px;
 }
 
-/* Classe CSS para item concluído na lista ativa */
-.completed {
+/* Container de ações dos botões da direita */
+.task-actions {
+    display: flex;
+    gap: 6px;
+}
+
+/* Estilo de texto riscado para Concluídas e Excluídas */
+.completed-text {
     text-decoration: line-through;
     color: #888;
 }
 
-.btn-delete {
-    background-color: #006400;
+/* Botões padrão (Verde Escuro) */
+.btn-delete, .btn-reload {
     color: white;
     border: none;
     padding: 6px 12px;
@@ -128,42 +131,32 @@ h3 {
     font-size: 14px;
 }
 
+.btn-delete {
+    background-color: #006400;
+}
+
 .btn-delete:hover {
     background-color: #004d00;
 }
 
-/* Estilos específicos para os itens do Histórico (Card Inferior) */
-.deleted-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
+/* Botão Reload (Azul acinzentado discreto) */
+.btn-reload {
+    background-color: #4682b4;
 }
 
-.deleted-item:last-child {
-    border-bottom: none;
+.btn-reload:hover {
+    background-color: #2e5c8a;
 }
 
-.deleted-text {
-    text-decoration: line-through;
-    color: #a0a0a0;
-    font-size: 16px;
+/* Customização para o Card de Excluídas (Itens mais opacos) */
+#deletedList .todo-item {
+    opacity: 0.6;
 }
 
-.deleted-time {
-    font-size: 12px;
-    color: #888;
-    margin-top: 4px;
-    font-style: italic;
+#deletedList .btn-delete {
+    opacity: 0.6;
 }
 
-/* Botão de deletar do card inferior: mais opaco e discreto */
-.deleted-item .btn-delete {
-    opacity: 0.5;
-}
-
-.deleted-item .btn-delete:hover {
-    background-color: #004d00;
-    opacity: 0.8; 
+#deletedList .btn-delete:hover {
+    opacity: 1;
 }
