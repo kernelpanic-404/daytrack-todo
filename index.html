@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <title>To-Do List com Data Dinâmica</title>
+    <title>Chronos List - Fluxo Completo</title>
     <!-- Link para o arquivo CSS externo -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -21,15 +20,21 @@
         </form>
     </div>
 
-    <!-- Card Central: Tarefas Ativas/Pendentes -->
+    <!-- Card: Tarefas Pendentes -->
     <div class="card">
         <h3>Tarefas Pendentes</h3>
         <ul id="todoList" class="todo-list"></ul>
     </div>
 
-    <!-- Card Inferior: Histórico de Tarefas Excluídas -->
+    <!-- Card: Tarefas Concluídas -->
     <div class="card">
-        <h3>Tarefas Excluídas / Concluídas</h3>
+        <h3>Tarefas Concluídas</h3>
+        <ul id="completedList" class="todo-list"></ul>
+    </div>
+
+    <!-- Card: Tarefas Excluídas -->
+    <div class="card">
+        <h3>Tarefas Excluídas</h3>
         <ul id="deletedList" class="todo-list"></ul>
     </div>
 
