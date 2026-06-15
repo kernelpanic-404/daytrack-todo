@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List com Data Dinâmica</title>
+    <!-- Link para o arquivo CSS externo -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Título Principal Dinâmico -->
+    <h1 id="mainTitle" class="main-title">Tarefas do dia --/--/----</h1>
+
+    <!-- Card Superior: Entrada de Dados -->
+    <div class="card">
+        <form id="todoForm" class="todo-form">
+            <input type="text" id="todoInput" class="todo-input" placeholder="Digite uma nova tarefa..." required>
+            <button type="submit" class="btn-add">Adicionar</button>
+        </form>
+    </div>
+
+    <!-- Card Central: Tarefas Ativas/Pendentes -->
+    <div class="card">
+        <h3>Tarefas Pendentes</h3>
+        <ul id="todoList" class="todo-list"></ul>
+    </div>
+
+    <!-- Card Inferior: Histórico de Tarefas Excluídas -->
+    <div class="card">
+        <h3>Tarefas Excluídas / Concluídas</h3>
+        <ul id="deletedList" class="todo-list"></ul>
+    </div>
+
+    <!-- Link para o arquivo JS externo -->
+    <script src="script.js"></script>
+</body>
+</html>
