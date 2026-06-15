@@ -1,0 +1,169 @@
+/* Estilização Geral */
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    margin: 0;
+}
+
+/* Estilo do Título Principal */
+.main-title {
+    color: #333;
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 18px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+}
+
+/* Formulário de Adicionar Tarefa */
+.todo-form {
+    display: flex;
+    gap: 10px;
+}
+
+.todo-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.btn-add {
+    background-color: #006400;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn-add:hover {
+    background-color: #004d00;
+}
+
+/* Lista de Tarefas Comuns */
+.todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.todo-item:last-child {
+    border-bottom: none;
+}
+
+.todo-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    flex: 1;
+}
+
+/* Bloco interno para empilhar texto e data de criação */
+.task-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.todo-text {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Data de criação (Card de Pendentes) */
+.task-meta {
+    font-size: 11px;
+    color: #999;
+    margin-top: 2px;
+}
+
+/* Classe CSS para item concluído na lista ativa */
+.completed {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.btn-delete {
+    background-color: #006400;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-delete:hover {
+    background-color: #004d00;
+}
+
+/* Estilos específicos para os itens do Histórico (Card Inferior) */
+.deleted-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.deleted-item:last-child {
+    border-bottom: none;
+}
+
+.deleted-text {
+    text-decoration: line-through;
+    color: #a0a0a0;
+    font-size: 16px;
+}
+
+.deleted-time {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+    font-style: italic;
+}
+
+/* Botão de deletar do card inferior: mais opaco e discreto */
+.deleted-item .btn-delete {
+    opacity: 0.5;
+}
+
+.deleted-item .btn-delete:hover {
+    background-color: #004d00;
+    opacity: 0.8; 
+}
