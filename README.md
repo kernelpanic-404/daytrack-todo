@@ -1,59 +1,75 @@
-# ⏳ Chronos List
+# ⏳ TreeDo
 
-Uma aplicação de lista de tarefas (To-Do List) de tela única, moderna, focada no registro cronológico das atividades. O projeto exibe a data atual dinamicamente, carimba os horários de criação e conclusão de cada tarefa e possui persistência de dados local.
+<p align="center">
+  <img src="https://shields.io" alt="PRs Welcome">
+  <img src="https://shields.io" alt="License MIT">
+  <img src="https://shields.io" alt="Made with JavaScript">
+</p>
+
+Uma aplicação de lista de tarefas (To-Do List) de tela única, moderna, focada no registro cronológico das atividades. O projeto exibe a data atual dinamicamente, gerencia subtarefas encadeadas, controla prazos retroativos e exporta relatórios profissionais em PDF com assinatura técnica.
 
 ## 🚀 Demonstração
 
-
-▶️ **[Você pode visualizar o projeto em execução aqui:](https://thaistardys.github.io/daytrack-todo/)**
-
+▶️ **[Acesse a aplicação em execução aqui](https://thaistardys.github.io/daytrack-todo/)**
 
 ---
 
-## 🎨 Funcionalidades
+## 📸 Capturas de Tela
 
-- **Data Dinâmica**: O cabeçalho exibe automaticamente a data do dia atual.
-- **Ciclo de Vida com Carimbo de Hora**: Cada tarefa registra o momento exato em que foi criada e o momento em que foi arquivada.
-- **Histórico de Concluídas**: Ao deletar uma tarefa pendente, ela é movida para um card de histórico inferior com estilo riscado.
-- **Exclusão Definitiva**: Opção de apagar permanentemente os itens do histórico com um botão de opacidade suavizada.
-- **Persistência de Dados**: Integração com o LocalStorage do navegador em formato JSON, garantindo que os dados não sumam ao atualizar a página.
-- **Acessibilidade de Teclado**: Envio de novas tarefas habilitado tanto pelo botão quanto pela tecla `Enter`.
+<p align="center">
+  <img src="https://placeholder.com" alt="Interface Chronos List" width="100%">
+</p>
+
+---
+
+## 🎨 Funcionalidades do Sistema
+
+- **Data Dinâmica**: O cabeçalho exibe automaticamente a data do dia atual no fuso local.
+- **Tratamento de Prazos (Ontem vs Hoje)**: Tarefas não concluídas de dias anteriores ganham destaque automático em uma seção retroativa especial.
+- **Subcategorias & Checklist**: Permite desmembrar uma tarefa principal em subetapas com gerenciamento de conclusão bidirecional em cascata.
+- **Barra de Progresso**: Exibe em tempo real a porcentagem (%) de evolução das subtarefas de cada categoria.
+- **Ciclo de Vida com Carimbo de Hora**: Cada item registra o momento exato em que foi criado e o momento em que foi arquivado.
+- **Fluxo Organizacional**: Divisão inteligente de painéis entre tarefas *Pendentes*, *Concluídas* e *Excluídas*.
+- **Exportação Avançada para PDF**: Filtra tarefas concluídas por período de data e gera um relatório profissional com folha de estilo para impressão e linha para Assinatura do Técnico.
+- **Persistência de Dados**: Integração com o `LocalStorage` do navegador em formato JSON, impedindo a perda de dados ao recarregar a página.
+- **Acessibilidade de Teclado**: Foco inteligente automatizado e envio de novas tarefas/subtarefas habilitado nativamente pela tecla `Enter`.
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
-O projeto foi desenvolvido utilizando a tríade fundamental do desenvolvimento web, sem frameworks externos:
+O projeto foi desenvolvido puramente com a tríade fundamental do desenvolvimento web, sem frameworks ou dependências externas:
 
-- **HTML5**: Estruturação semântica dos cards e formulários.
-- **CSS3**: Estilização baseada em componentes visuais limpos e design responsivo.
-- **JavaScript (ES6+)**: Manipulação nativa do DOM, gerenciamento de estados (`arrays`), tratamento de objetos de data (`Date`) e armazenamento local (`localStorage`).
-
----
-
-## 📦 Como Executar o Projeto
-
-1. Clone este repositório em sua máquina:
-   ```bash
-   git clone https://github.com[seu-usuario]/[nome-do-repositorio].git
-   ```
-2. Navegue até a pasta do projeto.
-3. Abra o arquivo `index.html` em qualquer navegador web de sua preferência.
+- **HTML5**: Estruturação semântica avançada utilizando tags de acessibilidade (`aria-labels`).
+- **CSS3**: Layout modular estruturado com Flexbox, variáveis nativas (`:root`) e folhas de estilo exclusivas para impressão física (`@media print`).
+- **JavaScript (ES6+)**: Manipulação nativa do DOM, uso de Template Literals, gerenciamento de estado unificado (SSOT), tratamento rígido de fusos horários e criptografia de IDs com `crypto.randomUUID()`.
 
 ---
 
 ## 📂 Estrutura de Arquivos
 
 ```text
-├── index.html       # Estrutura esquelética e marcação semântica
-├── style.css        # Identidade visual, cards e estados dos botões
-└── script.js        # Lógica de renderização, eventos e persistência JSON
+├── index.html       # Marcação semântica e esqueleto estrutural limpo
+├── style.css        # Identidade visual, variáveis de ambiente e responsividade
+└── script.js        # Motor lógico, eventos, manipulação de estado e persistência JSON
 ```
 
 ---
 
-## 🧑‍💻 Boas Práticas Aplicadas
+## 🧑‍💻 Boas Práticas de Clean Code Aplicadas
 
-- **Separação de Conceitos (SoC)**: Código modularizado rigidamente em arquivos isolados de HTML, CSS e JS.
-- **Manipulação Ativa de Eventos**: Utilização exclusiva de `EventListeners` no JavaScript, mantendo o HTML limpo de atributos de disparo (como `onclick`).
-- **Persistência Limpa**: Serialização de dados utilizando as APIs nativas `JSON.stringify` e `JSON.parse`.
+- **Separação de Conceitos (SoC)**: Código modularizado rigidamente em arquivos isolados. Zero estilos (`style=""`) ou scripts (`onclick=""`) inline no HTML.
+- **Manipulação Ativa de Eventos**: Utilização exclusiva de `EventListeners` no JavaScript, garantindo um código limpo e de fácil manutenção.
+- **Single Source of Truth (SSOT)**: Gerenciamento de dados centralizado em um único array estruturado de objetos, evitando redundância e inconsistência de dados.
+- **Persistência Limpa**: Serialização estável de dados utilizando as APIs nativas `JSON.stringify` e `JSON.parse`.
+
+---
+
+## 📦 Como Executar o Projeto Localmente
+
+1. Clone este repositório em sua máquina:
+   ```bash
+   git clone https://github.com
+   ```
+2. Navegue até a pasta do projeto.
+3. Abra o arquivo `index.html` em qualquer navegador web de sua preferência.
