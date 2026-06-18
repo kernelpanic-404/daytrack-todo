@@ -14,13 +14,6 @@ Uma aplicação de lista de tarefas (To-Do List) de tela única, moderna, focada
 
 ---
 
-## 📸 Capturas de Tela
-
-<p align="center">
-  <img src="https://placeholder.com" alt="Interface Chronos List" width="100%">
-</p>
-
----
 
 ## 🎨 Funcionalidades do Sistema
 
